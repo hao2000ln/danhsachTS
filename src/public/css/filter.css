@@ -1,0 +1,126 @@
+.dataTables_wrapper .dataTables_filter input {
+    top: 0;
+}
+
+#example_length {
+    font-family: "BeVietNam Pro";
+    font-size: 1.4rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: 0.1rem solid #818181;
+    margin: 0 6px;
+    min-width: 5rem;
+    outline: none;
+}
+
+div.dt-buttons {
+    margin-top: 0;
+}
+
+.filter-table {
+    border-bottom: 0.1rem dashed #ebecf0;
+    width: 100%;
+    top: 0;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 1rem 0 2rem 0;
+}
+
+#example {
+    padding-top: 1.5rem;
+    border-top: none;
+    margin-top: none;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    width: 25%;
+}
+
+.label-filter {
+    margin: 4px;
+    line-height: unset;
+}
+
+.filter-item:last-child {
+    display: flex;
+    align-items: center;
+}
+
+#applyFiltersBtn,
+#refreshBtn {
+    border-radius: 8px;
+    height: 3.6rem;
+    outline: none;
+    border: none;
+    padding: 0 1rem;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-right: 1rem;
+}
+
+#applyFiltersBtn {
+    color: #fff;
+    background: #4B7BEC;
+}
+
+#refreshBtn {
+    background: #F1F5FE;
+    color: #4B7BEC;
+}
+
+#applyFiltersBtn:hover,
+#refreshBtn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#applyFiltersBtn::before {
+    font-family: 'Font Awesome 6 Pro';
+    content: '\f002';
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#refreshBtn::before {
+    font-family: 'Font Awesome 6 Pro';
+    content: '\f021';
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+div.dt-buttons .dt-button {
+    min-width: 6rem;
+    margin: 0 2px
+}
+
+.filter-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-shadow: 1px 4px 4px rgba(0, 0, 0, 0.4), 0px -4px 2px rgba(255, 255, 255, 0.3);
+}
+
+.header{
+    text-align: center;
+}
+
+table.DTCR_clonedTable.dataTable {
+    position: absolute !important;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 202;
+    cursor: pointer;
+}
+
+div.DTCR_pointer {
+    margin-left: -8px;
+    width: 0;
+    height: 0 !important;
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+    border-color: #0259c4 transparent transparent transparent;
+    background: transparent;
+}
+

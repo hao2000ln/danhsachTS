@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+:root {
+    --bg-yellow: #FFCE5C;
+    --color-yellow: #7A5600;
+    --bg-blue: #F1F5FE;
+    --color-blue: #1091F4;
+    --bg-green: #EEFDF3;
+    --color-green: #117B34;
+    --bg-subtype: #FEF1F1;
+    --primary-color: #091E42;
+    --sub-color: #7A869A;
+}
+
+html {
+    line-height: 1;
+    font-family: "BeVietNam Pro", sans-serif;
+    font-size: 62.5%;
+}
+
+header {
+    font-size: 1.7rem;
+    margin: 0 2rem 2rem 2rem;
+    color: #97A0AF;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #EBECF0;
+}
+
+.header-primary {
+    color: #091E42;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem 2rem;
+    margin: 0 2rem;
+    height: 150px;
+}
+
+/* location */
+.location {
+    border: 1px solid #EBFDFF;
+    box-shadow: 4px 8px 1.6rem rgba(69, 79, 89, 0.04);
+    border-radius: 8px;
+
+}
+
+.location .location-name {
+    font-size: 2.4rem;
+    font-weight: 700;
+    padding: 1.6rem 2.4rem 0 2.4rem;
+    color: var(--color-green);
+}
+
+.location .location-info {
+    padding: 0 3rem 2rem 2.4rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.location .location-desc {
+    line-height: 1.5;
+    margin-left: 4rem;
+    font-size: 1.6rem;
+}
+
+.location-province {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.location-detail {
+    color: var(--primary-color);
+}
+
+.location-room {
+    color: var(--sub-color);
+}
+
+/* content */
+.input-content {
+    width: 250px;
+    padding: 4px 1.6rem;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    background-color: transparent;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.input-content span {
+    font-weight: 600;
+}
+
+.input-content.idAsset {
+    background-color: var(--bg-yellow);
+    color: var(--color-yellow);
+}
+
+.input-content.state {
+    background-color: var(--bg-green);
+    color: var(--color-green);
+}
+
+.input-content.status {
+    background-color: var(--bg-blue);
+    color: var(--color-blue);
+}
+
+.input-content.idAsset i {
+    font-size: 1.8rem;
+}
+
+.content {
+    line-height: 1.5;
+    font-size: 1.6rem;
+}
+
+.assetName {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.assetType {
+    display: flex;
+    gap: 0 20px
+}
+
+.box-field {
+    padding: 1rem 2.4rem;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 200px;
+}
+
+.box-field>p:first-child {
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--sub-color);
+    line-height: calc(24 / 18);
+    margin-bottom: 1rem;
+
+}
+
+.box-field>p:last-child {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: calc(24 / 16);
+    margin: 1rem 0;
+}
+
+.group {
+    background-color: #EEFDF3;
+}
+
+.type {
+    background-color: #F1F5FE;
+}
+
+.subtype {
+    background-color: #FEF1F1;
+
+}

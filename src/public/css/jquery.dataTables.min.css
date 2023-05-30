@@ -381,7 +381,7 @@ table.dataTable td {
 
 .dataTables_wrapper .dataTables_length {
     float: left;
-    display: none;
+    /* display: none; */
 }
 
 .dataTables_wrapper .dataTables_length select {

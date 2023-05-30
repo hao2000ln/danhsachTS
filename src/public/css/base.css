@@ -1,3 +1,4 @@
+@import "/src/css/reset.css";
 @import "/src/css/fontface.css";
 
 /* Custom CSS Style phải gọi vào các class/ID hoặc có parent element */

@@ -5,7 +5,7 @@
   font-size: 1.8rem;
   font-weight: 600;
   padding-bottom: 1.6rem;
-  margin-bottom: 2.4rem;
+  /* margin-bottom: 2.4rem; */
   border-bottom: 0.1rem dashed #ebecf0;
 }
 
@@ -21,14 +21,14 @@
 
 /* end header  */
 ::placeholder {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #42526e;
 }
 
 
 /* search + filter  */
 .dataTables_wrapper .dataTables_filter input {
-  background: url("../image/iconsearch.png");
+  background: url("../img/iconsearch.png");
   background-repeat: no-repeat;
   background-size: 1.5rem;
   background-position: 1.2rem 1.2rem;
@@ -72,7 +72,7 @@
   margin-right: 2rem;
 }
 
-.dept-list::after {
+/* .dept-list::after {
   content: "";
   position: absolute;
   background: url("/src/image/arrow.png");
@@ -86,7 +86,7 @@
   transition: 0.25s all ease;
   pointer-events: none;
   z-index: 1;
-}
+} */
 
 .form-control {
   min-width: 20rem;
