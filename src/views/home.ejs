@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách tài sản</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/danhsach.css">
+
+</head>
+<!-- <%# include('header') -%> -->
+
+<body>
+    <div class="topnav">
+        <ul>
+            <li><a class="active" href="/">Danh sách</a></li>
+            <li><a href="/create">Thêm mới</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li style="float:right"><a href="#about">About</a></li>
+        </ul>
+    </div>
+
+    <div class="danhsach">
+        <div class="header">
+            <span class="header-subTitle">Quản lý nhân viên</span>
+            <span>-</span>
+            <span class="header-mainTitle">Danh sách nhân viên</span>
+        </div>
+        <table id="example" class="display" style="width: 100%;" data-page-length="10">
+            <thead class="title-column">
+                <tr>
+                    <th>Mã nhân viên</th>
+                    <th>Tên nhân viên</th>
+                    <th>City</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(item,index){ %>
+                    <tr>
+                        <td>
+                            <%= item.id %>
+                        </td>
+                        <td>
+                            <%= item.name %>
+                        </td>
+                        <td>
+                            <%= item.city %>
+                        </td>
+                        <td>
+                            <%= item.email %>
+                        </td>
+                        <td style="display:flex;justify-content: space-evenly;">
+                            <a href="/update/<%= item.id %>">Edit</a>
+                            <form action="/delete-user/<%= item.id %>" method="post">
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                language: {
+                        search: '',
+                        zeroRecords: "Không có dữ liệu hiển thị",
+                        info: "Hiển thị _START_ - _END_ của _TOTAL_ bản ghi",
+                        infoEmpty: "Không tìm thấy bản ghi nào.",
+                        infoFiltered: "(Lọc từ _MAX_ bản ghi.)",
+                        paginate: {
+                            previous: "Trước",
+                            next: "Sau",
+                        },
+                        searchPlaceholder: "Tìm kiếm",
+                    },
+            })
+        });
+    </script>
+</body>
+
+</html>

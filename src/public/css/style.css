@@ -1,0 +1,91 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+input,
+select,
+textarea {
+  background-color: transparent;
+  outline: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04aa6d;
+}
+
+
+.danhsach {
+  max-width: 90%;
+  margin: 30px auto;
+}
+
+.form {
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+input {
+  outline: none;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+}
+
+fieldset {
+  padding: 10px;
+}
+
+label {
+  min-width: 100px;
+}
+
+input[type="submit"] {
+  padding: 8px;
+  background-color: #04aa6d;
+  color: #fff;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
