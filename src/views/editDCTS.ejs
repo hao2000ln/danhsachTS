@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update User by HaoLN</title>
+        <style>
+            #id {
+                background-color: #ccc;
+            }
+
+            .form {
+                width: 800px;
+                margin: 0 auto;
+            }
+
+            .input-group {
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="form">
+            <form action="/update-DC" method="post">
+                <fieldset>
+                    <legend>Cập nhật phiếu điều chuyển</legend>
+                    <div class="input-group">
+                        <label for="id">Mã điều chuyển:</label>
+                        <input type="text" id="id" name="ID" value="<%= userEdit.ID %>" readonly>
+                    </div>
+                    <div class="input-group">
+                        <label for="type">Loại điều chuyển:</label>
+                        <input type="text" id="type" name="TYPE" value="<%= userEdit.TYPE %>">
+                    </div>
+                    <div class="input-group">
+                        <label for="status">Trạng thái:</label>
+                        <input type="text" id="status" name="STATUS" value="<%= userEdit.STATUS %>">
+                    </div>
+                    <div class="input-group">
+                        <label for="assignee">Người giao:</label>
+                        <input type="text" id="assignee" name="ASSIGNEE_FULL_NAME"
+                            value="<%= userEdit.ASSIGNEE_FULL_NAME %>">
+                    </div>
+                    <input type="submit" value="Submit">
+                </fieldset>
+            </form>
+        </div>
+
+    </body>
+
+</html>

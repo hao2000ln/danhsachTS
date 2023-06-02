@@ -1,11 +1,19 @@
 const db = require("../config/database");
 
 const getAllUsers = async () => {
-  // let [results, fields] = await dv.Open("select * from EMSTRANSFERM1");
-  // return results;
-  const sql = "SELECT ID,STATUS,TYPE,ASSIGNEE_FULL_NAME ,ASSIGNEE1_FULL_NAME FROM EMSTRANSFERM1";
+  const sql =
+    "SELECT ID,STATUS,TYPE,ASSIGNEE_FULL_NAME ,ASSIGNEE1_FULL_NAME FROM EMSTRANSFERM1";
   const result = await db.query(sql);
-  return result;
+  const uniqueTypes = Array.from(new Set(result.map((item) => item.TYPE)));
+  const uniqueStatus = Array.from(new Set(result.map((item) => item.STATUS)));
+
+  return { data: result, types: uniqueTypes, statusL: uniqueStatus };
 };
 
-module.exports = getAllUsers;
+const getAllDistrict = async () => {
+  const sql = "SELECT ID,NAME, PROVINCE_NAME FROM EMSDISTRICTM1";
+  const result = await db.query(sql);
+  return { data: result };
+};
+
+module.exports = { getAllUsers, getAllDistrict };
