@@ -57,6 +57,8 @@ const postUpdateDCTS = async (req, res) => {
     //   ID,
     // };
     // let result = await db.query(sql, binds, options);
+    var query =  `UPDATE EMSTRANSFERM1 SET STATUS ="${STATUS}", TYPE ="${TYPE}", ASSIGNEE_FULL_NAME ="${ASSIGNEE_FULL_NAME}"  WHERE ID ="${ID}"`;
+    console.log(query);
     var result = await db.Open(
       "UPDATE EMSTRANSFERM1 SET STATUS =:STATUS, TYPE =:TYPE, ASSIGNEE_FULL_NAME =:ASSIGNEE_FULL_NAME WHERE ID =:ID",
       [STATUS, TYPE, ASSIGNEE_FULL_NAME, ID],
