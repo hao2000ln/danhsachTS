@@ -1,6 +1,9 @@
 const db = require("../config/database");
 const { getAllUsers, getAllDistrict } = require("../models/CRUDservice");
-
+const options = {
+  autoCommit: true,
+  batchErrors: true,
+};
 const gethome = async (req, res) => {
   try {
     const { data, types, statusL } = await getAllUsers();
@@ -41,30 +44,36 @@ const getUpdateDCTS = async (req, res) => {
   }
 };
 
-// const postUpdateDCTS = async (req, res) => {
-//   try {
-//     let { ID, STATUS, TYPE, ASSIGNEE_FULL_NAME } = req.body;
-//     const sql =
-//       "UPDATE EMSTRANSFERM1 SET STATUS = :STATUS, TYPE = :TYPE, ASSIGNEE_FULL_NAME = :ASSIGNEE_FULL_NAME WHERE ID = :ID";
-//     const binds = {
-//       STATUS,
-//       TYPE,
-//       ASSIGNEE_FULL_NAME,
-//       ID,
-//     };
-//     let result = await db.query(sql, binds);
-//     console.log(result);
+const postUpdateDCTS = async (req, res) => {
+  try {
+    let { ID, STATUS, TYPE, ASSIGNEE_FULL_NAME } = req.body;
+    console.log(ID, STATUS, TYPE, ASSIGNEE_FULL_NAME);
+    // const sql =
+    //   "UPDATE EMSTRANSFERM1 SET STATUS =:STATUS, TYPE =:TYPE, ASSIGNEE_FULL_NAME =:ASSIGNEE_FULL_NAME WHERE ID =:ID";
+    // const binds = {
+    //   STATUS,
+    //   TYPE,
+    //   ASSIGNEE_FULL_NAME,
+    //   ID,
+    // };
+    // let result = await db.query(sql, binds, options);
+    var result = await db.Open(
+      "UPDATE EMSTRANSFERM1 SET STATUS =:STATUS, TYPE =:TYPE, ASSIGNEE_FULL_NAME =:ASSIGNEE_FULL_NAME WHERE ID =:ID",
+      [STATUS, TYPE, ASSIGNEE_FULL_NAME, ID],
+      options
+    );
+    console.log(result);
 
-//     res.redirect("/"); // trỏ về router
-//   } catch (err) {
-//     console.err(err);
-//     res.send({ message: "Có lỗi xảy ra khi cập nhật thông tin", data: null });
-//   }
-// };
+    res.redirect("/"); // trỏ về router
+  } catch (err) {
+    console.err(err);
+    res.send({ message: "Có lỗi xảy ra khi cập nhật thông tin", data: null });
+  }
+};
 
 module.exports = {
   gethome,
   getDistrict,
   getUpdateDCTS,
-  // postUpdateDCTS,
+  postUpdateDCTS,
 };
