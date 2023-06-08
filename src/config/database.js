@@ -8,7 +8,7 @@ const dbConfig = {
 };
 
 // console.log("www",process.env);
-// Khởi tạo pool kết nối
+// Khởi tạo pool kết nối  
 async function initialize() {
   await oracledb.createPool(dbConfig);
 }

@@ -1,9 +1,10 @@
 const db = require("../config/database");
-const { getAllUsers, getAllDistrict } = require("../models/CRUDservice");
-const options = {
-  autoCommit: true,
-  batchErrors: true,
-};
+
+const {
+  getAllUsers,
+  getAllDistrict,
+} = require("../models/CRUDservice");
+
 const gethome = async (req, res) => {
   try {
     const { data, types, statusL } = await getAllUsers();
@@ -32,7 +33,7 @@ const getUpdateDCTS = async (req, res) => {
   try {
     const userId = req.params.id;
     const sql =
-      "SELECT ID,STATUS,TYPE,ASSIGNEE_FULL_NAME ,ASSIGNEE1_FULL_NAME FROM EMSTRANSFERM1 WHERE id = :userId";
+      "SELECT ID,STATUS,TYPE,ASSIGNEE_FULL_NAME ,EMS_DATE_CREATE FROM EMSTRANSFERM1 WHERE id = :userId";
     const binds = [userId];
     const result = await db.query(sql, binds);
     const user = result[0];
@@ -45,28 +46,25 @@ const getUpdateDCTS = async (req, res) => {
 };
 
 const postUpdateDCTS = async (req, res) => {
+  let id = req.body.iddc;
+  let status = req.body.status;
+  let type = req.body.type;
+  let assignee = req.body.assignee;
+
   try {
-    let { ID, STATUS, TYPE, ASSIGNEE_FULL_NAME } = req.body;
-    console.log(ID, STATUS, TYPE, ASSIGNEE_FULL_NAME);
-    // const sql =
-    //   "UPDATE EMSTRANSFERM1 SET STATUS =:STATUS, TYPE =:TYPE, ASSIGNEE_FULL_NAME =:ASSIGNEE_FULL_NAME WHERE ID =:ID";
+    // let { ID, STATUS, TYPE, ASSIGNEE_FULL_NAME } = req.body;
+    // const sql = `UPDATE EMSTRANSFERM1 SET STATUS = :STATUS, TYPE = :TYPE, ASSIGNEE_FULL_NAME = :ASSIGNEE_FULL_NAME WHERE ID = :ID`;
+    // console.log("result : ", sql);
     // const binds = {
     //   STATUS,
     //   TYPE,
     //   ASSIGNEE_FULL_NAME,
     //   ID,
     // };
-    // let result = await db.query(sql, binds, options);
-    var result = await db.Open(
-      "UPDATE EMSTRANSFERM1 SET STATUS =:STATUS, TYPE =:TYPE, ASSIGNEE_FULL_NAME =:ASSIGNEE_FULL_NAME WHERE ID =:ID",
-      [STATUS, TYPE, ASSIGNEE_FULL_NAME, ID],
-      options
-    );
-    console.log(result);
-
+    await updateDCTS(status, type, assignee, id);
     res.redirect("/"); // trỏ về router
   } catch (err) {
-    console.err(err);
+    console.error(err);
     res.send({ message: "Có lỗi xảy ra khi cập nhật thông tin", data: null });
   }
 };

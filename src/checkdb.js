@@ -8,10 +8,11 @@ async function run() {
       "(DESCRIPTION =(ADDRESS_LIST =(ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.18.44)(PORT = 1521)))(CONNECT_DATA =(SID = ESDTEST)(SERVER = DEDICATED)))",
   });
 
-  const result = await connection.execute(`SELECT ID FROM EMSTRANSFERM1`);
-  console.log("Result is:", result.rows);
+  const result = await connection.execute(`SELECT ID, STATUS FROM EMSTRANSFERM1`);
+  console.log("Result is:\n", result.rows);
 
   await connection.close(); // Always close connections
-}
+} 
 
 run();
+
