@@ -1,5 +1,56 @@
-@import "/src/css/reset.css";
-@import "/src/css/fontface.css";
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-Thin.ttf") format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "BeVietNam Pro";
+  src: url("../font/BeVietnamPro-Black.ttf") format("truetype");
+  font-weight: 900;
+}
 
 /* Custom CSS Style phải gọi vào các class/ID hoặc có parent element */
 /* Ví dụ : Bạn nên code vào .button thay vì a.button. */
@@ -26,7 +77,6 @@ html {
   line-height: 1.5;
   scroll-behavior: smooth;
 }
-
 
 ::selection {
   background: #ffce5c;

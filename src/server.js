@@ -1,10 +1,10 @@
 require("dotenv").config();
 const express = require("express");
-const router = require("./routers/web");
+// const router = require("./routers/web");
 const { configViewEngine } = require("./config/viewEngine");
-
+const route = require("./routers");
 const port = process.env.PORT;
-const hostname ="localhost";
+const hostname = "localhost";
 const app = express();
 const db = require("./config/database");
 
@@ -21,8 +21,11 @@ db.initialize().catch((error) => {
   process.exit(1);
 });
 
+// Route init
+route(app);
+
 //khai báo route
-app.use("/", router); // tất cả router đứng sau '/'
+// app.use("/", router); // tất cả router đứng sau '/'
 
 // Close the database connection when the application is terminated
 process.on("SIGTERM", () => {

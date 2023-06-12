@@ -1,10 +1,15 @@
 const db = require("../config/database");
+const dbconnect = require("../config/db");
+
 const moment = require("moment");
+const options = {
+  autoCommit: true,
+  batchErrors: true,
+};
 
 const getAllUsers = async () => {
-  const sql =
-    "SELECT ID,STATUS,TYPE, DBMS_LOB.SUBSTR(DES,3000,1) ,EMS_DATE_CREATE FROM EMSTRANSFERM1";
-  const result = await db.query(sql);
+  const sql = "SELECT ID,STATUS,TYPE ,EMS_DATE_CREATE FROM EMSTRANSFERM1";
+  const result = await db.Open(sql, []);
   const uniqueTypes = Array.from(new Set(result.map((item) => item.TYPE)));
   const uniqueStatus = Array.from(new Set(result.map((item) => item.STATUS)));
 
@@ -16,7 +21,6 @@ const getAllUsers = async () => {
       ID: row.ID,
       STATUS: row.STATUS,
       TYPE: row.TYPE,
-      DES: row.DES,
       EMS_DATE_CREATE: moment(row.EMS_DATE_CREATE).format("DD/MM/YYYY"),
     };
   });
@@ -25,9 +29,62 @@ const getAllUsers = async () => {
 };
 
 const getAllDistrict = async () => {
-  const sql = "SELECT ID,NAME, PROVINCE_NAME FROM EMSDISTRICTM1";
-  const result = await db.query(sql);
-  return { data: result };
+  try {
+    // const sql = `SELECT ID, NAME, PROVINCE_NAME FROM EMSDISTRICTM1
+    // ORDER BY ID
+    // OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
+    const sql = "SELECT ID, NAME, PROVINCE_NAME FROM EMSDISTRICTM1";
+    const result = await db.query(sql);
+    return result;
+  } catch (error) {
+    console.log("error", error);
+    return null;
+  }
 };
 
-module.exports = { getAllUsers, getAllDistrict };
+const getCountDistrict = async () => {
+  try {
+    let sql = "SELECT COUNT(*) AS TOTAL FROM EMSDISTRICTM1";
+    let result = await db.query(sql);
+    return result[0].TOTAL;
+  } catch (error) {
+    console.log("error", error);
+    return 0;
+  }
+};
+
+const updateDistrict = async (id, name, province) => {
+  try {
+    const sql = `UPDATE EMSDISTRICTM1 SET NAME = :name, PROVINCE_NAME = :province WHERE ID = :id`;
+    const binds = {
+      id: id,
+      name: name,
+      province: province,
+    };
+    const result = await dbconnect.Open(sql, binds, options);
+    return result;
+  } catch (error) {
+    console.log("error", error);
+    return null;
+  }
+};
+
+const deleteDistrict = async (id) => {
+  try {
+    const sql = "DELETE FROM EMSDISTRICTM1 WHERE ID = :id";
+    const binds = { id: id };
+    const result = await dbconnect.Open(sql, binds, options);
+    return result;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+module.exports = {
+  getAllUsers,
+  getAllDistrict,
+  getCountDistrict,
+  updateDistrict,
+  deleteDistrict,
+};

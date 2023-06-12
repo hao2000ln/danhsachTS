@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="/css/virtual-select.min.css">
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/base.css">
+        <link rel="stylesheet" href="/css/danhsach.css" />
+        <link rel="stylesheet" href="/css/fontawesome6.css">
+        <style>
+            .highlight {
+                color: red;
+            }
+
+            .gioihan {
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                visibility: visible;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                word-wrap: break-word;
+                line-height: 34px;
+                /* 3 lines x 16px line-height */
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        <div class="header">
+            <span class="header-subTitle">Quản lý tài sản</span>
+            <span>-</span>
+            <span class="header-mainTitle">Danh sách phiếu điều chuyển tài sản</span>
+        </div>
+
+        <div class="filter-table">
+            <span class="label-filter">Loại điều chuyển</span>
+            <select id="filter1" multiple name="native-select">
+                <% types.forEach(function(type) { %>
+                    <option value="<%= type %>">
+                        <%= type %>
+                    </option>
+                    <% }) %>
+            </select>
+            <span class="label-filter">Trạng thái </span>
+            <select id="filter2" multiple name="native-select">
+                <% statusL.forEach(function(item) { %>
+                    <option value="<%= item %>">
+                        <%= item %>
+                    </option>
+                    <% }) %>
+            </select>
+        </div>
+
+        <table id="example" class="display" style="width: 100%;">
+            <thead class="title-column">
+                <tr>
+                    <th style="width: 4%">STT</th>
+                    <th style="width: 12%">Mã phiếu</th>
+                    <th style="width: 15%">Loại điều chuyển</th>
+                    <th style="width: 20%">Trạng thái</th>
+                    <th style="width: 10%">Ngày lập phiếu</th>
+                    <th style="width: 4%;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (data && data.length> 0) { %>
+                    <% data.forEach(function(item,index){ %>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <%= item.ID %>
+                            </td>
+                            <td>
+                                <%= item.TYPE %>
+                            </td>
+                            <td>
+                                <%= item.STATUS %>
+                            </td>
+                            <td>
+                                <%= item.EMS_DATE_CREATE %>
+                            </td>
+                            <td>
+                                <a href="/update/<%= item.ID %>">Edit</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <p>No records found.</p>
+                                <% } %>
+            </tbody>
+        </table>
+        <script src="/js/jquery-3.5.1.js"></script>
+        <script src="/js/jquery.dataTables.min.js"></script>
+        <script src="/js/virtual-select.min.js"></script>
+        <script>
+            let filters = [{ id: '#filter1', maxWidth: '250px' }, { id: '#filter2', maxWidth: '350px' }];
+
+            filters.forEach((filter) => {
+                let options = {
+                    ele: filter.id,
+                    search: true,
+                    placeholder: "Hiển thị tất cả",
+                    hideClearButton: false,
+                    searchByStartsWith: true,
+                    optionsCount: 4,
+                    disableSelectAll: false,
+                    noSearchResultsText: 'Không tìm thấy kết quả',
+                    maxWidth: filter.maxWidth,
+                    updatePositionThrottle: 100,
+                    allOptionsSelectedText: 'Tất cả',
+                    optionSelectedText: 'tiêu chí đã chọn',
+                    optionsSelectedText: 'tiêu chí đã chọn',
+                    searchPlaceholderText: "Tìm kiếm",
+                    silentInitialValueSet: true,
+                };
+                VirtualSelect.init(options);
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    paging: true,
+                    info: true,
+                    order: [[1, 'asc']],
+                    sort: true,
+                    lengthChange: false,
+                    colReorder: false,
+                    language: {
+                        search: '',
+                        zeroRecords: "Không có dữ liệu hiển thị",
+                        info: "Hiển thị _START_ - _END_ của _TOTAL_ bản ghi",
+                        infoEmpty: "Không tìm thấy bản ghi nào.",
+                        infoFiltered: "(Lọc từ _MAX_ bản ghi.)",
+                        paginate: {
+                            previous: "Trước",
+                            next: "Sau",
+                        },
+                        searchPlaceholder: "Nhập từ khóa tìm kiếm",
+                    },
+                    aoColumnDefs: [
+                        { "bSortable": false, "aTargets": [0,5] },
+                        { "bSearchable": false, "aTargets": [0,4] },
+                    ],
+                    "pageLength": 8, //set mặc định có bao nhiêu bản ghi được hiển thị
+                });
+                //thêm stt tăng dần
+                table.on('order.dt search.dt', function () {
+                    let i = 1;
+                    table.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+                        this.data(i++);
+                    });
+                }).draw();
+
+                // custom filter
+                var columns = [
+                    { index: 2, filter: '#filter1' },
+                    { index: 3, filter: '#filter2' }
+                ];
+                $.each(columns, function (i, column) {
+                    $(column.filter).on('change', function () {
+                        var selectedValues = $(this).val();
+                        if (selectedValues && selectedValues.length > 0) {
+                            table.columns([column.index]).search("^" + selectedValues.join('$|^') + "$", true, false, true).draw();
+                        } else {
+                            table.columns([column.index]).search("").draw();
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+
+</html>

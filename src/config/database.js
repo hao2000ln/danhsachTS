@@ -8,7 +8,7 @@ const dbConfig = {
 };
 
 // console.log("www",process.env);
-// Khởi tạo pool kết nối  
+// Khởi tạo pool kết nối
 async function initialize() {
   await oracledb.createPool(dbConfig);
 }
@@ -30,7 +30,7 @@ async function Open(sql, binds = []) {
     });
     return result.rows;
   } catch (error) {
-    connection.close()
+    connection.close();
     console.error(error);
   } finally {
     if (connection) {

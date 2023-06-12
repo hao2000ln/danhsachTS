@@ -1,0 +1,6 @@
+#connect sql
+PORT= 8087
+IP=
+user=
+password=
+connectString=
