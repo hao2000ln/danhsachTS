@@ -5,7 +5,7 @@
   "main": "service.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --inspect=9228 src/server.js"
+    "start": "nodemon --inspect=9227 src/server.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/hao2000ln/danhsachTS#readme",
   "dependencies": {
     "api-query-params": "5.4.0",
+    "axios": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "16.0.3",
     "ejs": "3.1.9",

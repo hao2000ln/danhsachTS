@@ -33,7 +33,7 @@ const getAllDistrict = async () => {
     // const sql = `SELECT ID, NAME, PROVINCE_NAME FROM EMSDISTRICTM1
     // ORDER BY ID
     // OFFSET ${offset} ROWS FETCH NEXT ${limit} ROWS ONLY`;
-    const sql = "SELECT ID, NAME, PROVINCE_NAME FROM EMSDISTRICTM1";
+    const sql = "SELECT ID, NAME,COST, PROVINCE_NAME FROM EMSDISTRICTM1";
     const result = await db.query(sql);
     return result;
   } catch (error) {
